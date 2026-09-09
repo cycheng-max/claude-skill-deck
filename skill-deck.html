@@ -1,0 +1,492 @@
+<title>Skill 盤點台</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style>
+:root{
+  --paper:#E7ECEF;
+  --surface:#FFFFFF;
+  --ink:#11222E;
+  --muted:#64798A;
+  --line:#C6D2DA;
+  --line-soft:#DDE5EA;
+  --accent:#0C6B8A;
+  --accent-wash:#E2F0F5;
+  --ok:#1D6B4C;
+  --ok-wash:#E1EFE8;
+  --warn:#8A5A0C;
+  --warn-wash:#F6EBD8;
+
+  /* ── 型別階梯 html-large-type：內文 23px，全體上移三階 ── */
+  --fs-micro:16px;
+  --fs-small:20px;
+  --fs-body:23px;
+  --fs-lede:26px;
+  --fs-h3:28px;
+  --fs-h2:40px;
+  --fs-h1:clamp(38px,5vw,64px);
+  --lh-body:1.76;
+  --lh-small:1.6;
+  --lh-head:1.18;
+  --measure:32em;
+  --measure-wide:38em;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"Noto Sans TC",-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E181F;
+    --surface:#16242E;
+    --ink:#E4EDF2;
+    --muted:#93A8B6;
+    --line:#2C3F4C;
+    --line-soft:#22333E;
+    --accent:#5FB8D4;
+    --accent-wash:#173845;
+    --ok:#71C39E;
+    --ok-wash:#16332A;
+    --warn:#DCA646;
+    --warn-wash:#33280F;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E181F;
+  --surface:#16242E;
+  --ink:#E4EDF2;
+  --muted:#93A8B6;
+  --line:#2C3F4C;
+  --line-soft:#22333E;
+  --accent:#5FB8D4;
+  --accent-wash:#173845;
+  --ok:#71C39E;
+  --ok-wash:#16332A;
+  --warn:#DCA646;
+  --warn-wash:#33280F;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:var(--fs-body);
+  line-height:var(--lh-body);
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1440px;margin:0 auto;padding:64px 28px 112px}
+
+/* ── header ─────────────────────────── */
+.kicker{
+  font-family:var(--mono);
+  font-size:var(--fs-micro);
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:0 0 18px;
+}
+h1{
+  font-family:"IBM Plex Mono","Noto Sans TC",ui-monospace,Menlo,monospace;
+  font-weight:600;
+  font-size:var(--fs-h1);
+  line-height:var(--lh-head);
+  letter-spacing:-.02em;
+  margin:0 0 20px;
+  text-wrap:balance;
+}
+h1 .s{color:var(--accent)}
+.lede{
+  font-size:var(--fs-lede);
+  max-width:var(--measure);
+  color:var(--ink);
+  margin:0 0 28px;
+}
+.lede strong{font-weight:700}
+
+.note{
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  border-left:4px solid var(--warn);
+  padding:18px 22px;
+  max-width:var(--measure-wide);
+  margin:0 0 14px;
+  font-size:var(--fs-body);
+}
+.note.info{border-left-color:var(--accent)}
+.note b{font-weight:700}
+.note code{font-family:var(--mono);font-size:.85em;line-height:1.4;background:var(--accent-wash);padding:2px 6px;border-radius:2px}
+
+/* ── controls ───────────────────────── */
+.controls{margin:36px 0 0;position:sticky;top:0;background:var(--paper);padding:12px 0 4px;z-index:5}
+.searchbar{
+  display:flex;align-items:center;gap:12px;
+  background:var(--surface);
+  border:1px solid var(--line);
+  padding:12px 18px;
+}
+.searchbar .slash{font-family:var(--mono);color:var(--accent);font-size:var(--fs-body)}
+#q{
+  flex:1;border:0;background:transparent;color:var(--ink);
+  font-family:var(--mono);font-size:var(--fs-small);outline:none;min-width:0;
+}
+#q::placeholder{color:var(--muted)}
+.count{font-family:var(--mono);font-size:var(--fs-small);color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hints{font-family:var(--mono);font-size:var(--fs-micro);color:var(--muted);margin:12px 0 0;display:flex;gap:18px;flex-wrap:wrap}
+kbd{
+  font-family:var(--mono);font-size:var(--fs-micro);line-height:1.4;
+  border:1px solid var(--line);border-bottom-width:2px;
+  padding:2px 7px;border-radius:3px;background:var(--surface);
+}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.chip{
+  font-family:var(--mono);font-size:var(--fs-small);
+  padding:7px 15px;
+  border:1px solid var(--line);
+  background:var(--surface);color:var(--muted);
+  cursor:pointer;
+}
+.chip:hover{color:var(--ink);border-color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:focus-visible,#q:focus-visible,.copy:focus-visible,.theme:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ── sections ───────────────────────── */
+section{margin:44px 0 0}
+section[hidden]{display:none}
+h2{
+  font-family:var(--mono);font-size:var(--fs-h2);font-weight:600;
+  margin:0 0 4px;padding:0 0 14px;
+  border-bottom:1px solid var(--line);
+  display:flex;align-items:baseline;gap:12px;
+}
+h2 .n{color:var(--muted);font-size:var(--fs-small);font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);font-size:var(--fs-small);margin:14px 0 24px;max-width:var(--measure-wide)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:18px}
+.card{
+  background:var(--surface);
+  border:1px solid var(--line-soft);
+  padding:20px 22px 18px;
+  display:flex;flex-direction:column;gap:0;
+}
+.card[hidden]{display:none}
+.card-top{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px}
+.cmd{font-family:var(--mono);font-size:var(--fs-lede);font-weight:500;color:var(--ink);word-break:break-all}
+.cmd .s{color:var(--accent)}
+.tag{
+  font-family:var(--mono);font-size:var(--fs-micro);letter-spacing:.04em;line-height:1.4;
+  padding:2px 8px;border-radius:2px;white-space:nowrap;
+}
+.tag.manual{background:var(--warn-wash);color:var(--warn)}
+.tag.auto{background:var(--ok-wash);color:var(--ok)}
+.tag.ext{background:var(--accent-wash);color:var(--accent)}
+.rule{height:1px;background:var(--line-soft);margin:12px 0}
+.desc{font-size:var(--fs-body);color:var(--ink);margin:0}
+.when{font-size:var(--fs-small);line-height:var(--lh-small);color:var(--muted);margin:10px 0 0}
+.card-foot{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 0}
+.meta{font-family:var(--mono);font-size:var(--fs-micro);color:var(--muted)}
+.copy{
+  font-family:var(--mono);font-size:var(--fs-small);
+  border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  padding:7px 17px;cursor:pointer;
+}
+.copy:hover{border-color:var(--accent);color:var(--accent)}
+.copy.done{background:var(--ok-wash);border-color:var(--ok);color:var(--ok)}
+
+.empty{font-family:var(--mono);font-size:var(--fs-small);color:var(--muted);padding:44px 0}
+.empty[hidden]{display:none}
+
+footer{margin:80px 0 0;padding:26px 0 0;border-top:1px solid var(--line);color:var(--muted);font-size:var(--fs-small);line-height:var(--lh-small)}
+footer p{margin:0 0 10px;max-width:var(--measure-wide)}
+.theme{
+  position:fixed;right:18px;bottom:18px;z-index:10;
+  font-family:var(--mono);font-size:var(--fs-micro);
+  border:1px solid var(--line);background:var(--surface);color:var(--muted);
+  padding:9px 15px;cursor:pointer;
+}
+.theme:hover{color:var(--ink);border-color:var(--accent)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:700px){
+  .wrap{padding:40px 18px 80px}
+  .grid{grid-template-columns:1fr}
+  .hints{gap:12px}
+}
+@media print{
+  body{background:#fff;color:#000;font-size:12pt;line-height:1.5}
+  .controls,.theme,.copy{display:none}
+  .wrap{max-width:none;padding:0}
+  h1{font-size:24pt} h2{font-size:16pt} .cmd{font-size:13pt}
+  .desc{font-size:11pt} .when,.meta,.sub,footer{font-size:9.5pt}
+  .tag,.kicker{font-size:9pt}
+  .grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .card{break-inside:avoid;border:1px solid #bbb}
+}
+</style>
+
+<div class="wrap">
+  <p class="kicker">Skill Deck · 本機 39 組 · 2026-09-09 盤點</p>
+  <h1><span class="s">/</span>Skill 盤點台</h1>
+
+  <p class="lede">這台機器 <code style="font-family:var(--mono);font-size:.85em">~/.claude/skills</code> 底下裝了 39 個 skill。其中 <strong>14 個模型叫不動，只能你自己打指令</strong>，那是這張表存在的理由。點「複製」拿到指令，貼進對話框就會啟動。</p>
+
+  <div class="note">
+    <b>手動與自動的差別。</b>帶 <code>手動</code> 標記的 14 個在設定裡寫了 <code>disable-model-invocation: true</code>，模型不會依情境自動觸發，必須打指令。這是刻意的——它們會改 issue tracker、產生大量檔案或重設專案設定。剩下 25 個會在情境符合時自動啟動，你也可以手動叫。
+  </div>
+  <div class="note info">
+    <b>資料來源。</b>指令名稱與分類來自 2026-09-09 對 <code>~/.claude/skills</code> 的實際掃描，說明取自各 skill 的 <code>SKILL.md</code> frontmatter，經改寫成一句話。分類是我依用途歸的，不是原作者的分法。
+  </div>
+
+  <div class="controls">
+    <div class="searchbar">
+      <span class="slash">/</span>
+      <input id="q" type="text" placeholder="輸入指令或關鍵字，例如：逐字稿、活頁簿、review" autocomplete="off" spellcheck="false">
+      <span class="count"><span id="shown">39</span> / 39</span>
+    </div>
+    <p class="hints">
+      <span>按 <kbd>/</kbd> 跳到搜尋框</span>
+      <span><kbd>Esc</kbd> 清除</span>
+      <span>點卡片任一處也可複製</span>
+    </p>
+    <div class="chips" id="chips">
+      <button class="chip" data-f="all" aria-pressed="true">全部</button>
+      <button class="chip" data-f="manual" aria-pressed="false">只看手動</button>
+      <button class="chip" data-f="proj" aria-pressed="false">專案專用</button>
+      <button class="chip" data-f="plan" aria-pressed="false">規劃與釐清</button>
+      <button class="chip" data-f="build" aria-pressed="false">實作與測試</button>
+      <button class="chip" data-f="diag" aria-pressed="false">診斷與審查</button>
+      <button class="chip" data-f="arch" aria-pressed="false">架構與文件</button>
+      <button class="chip" data-f="env" aria-pressed="false">環境與流程</button>
+      <button class="chip" data-f="ext" aria-pressed="false">外來部署</button>
+    </div>
+  </div>
+
+  <p class="empty" hidden id="empty">沒有符合的指令。按 Esc 清除搜尋。</p>
+
+  <section data-sec="proj">
+    <h2>專案專用 <span class="n">8 組</span></h2>
+    <p class="sub">為這裡的實際業務寫的，也是唯一會動到客戶資料與活頁簿的一群。全部會自動觸發。</p>
+    <div class="grid"></div>
+  </section>
+
+  <section data-sec="plan">
+    <h2>規劃與釐清 <span class="n">8 組</span></h2>
+    <p class="sub">把還沒想清楚的東西逼成能動手的規格、票或問卷。這一群手動的比例最高。</p>
+    <div class="grid"></div>
+  </section>
+
+  <section data-sec="build">
+    <h2>實作與測試 <span class="n">4 組</span></h2>
+    <p class="sub">從規格走到程式碼。</p>
+    <div class="grid"></div>
+  </section>
+
+  <section data-sec="diag">
+    <h2>診斷與審查 <span class="n">4 組</span></h2>
+    <p class="sub">出問題、要審查、要分流的時候。</p>
+    <div class="grid"></div>
+  </section>
+
+  <section data-sec="arch">
+    <h2>架構與文件 <span class="n">6 組</span></h2>
+    <p class="sub">結構層級的思考，以及寫給人跟 agent 看的文件。</p>
+    <div class="grid"></div>
+  </section>
+
+  <section data-sec="env">
+    <h2>環境與流程 <span class="n">8 組</span></h2>
+    <p class="sub">設定專案、管住危險操作，以及對話本身的流程控制。</p>
+    <div class="grid"></div>
+  </section>
+
+  <section data-sec="ext">
+    <h2>外來部署 <span class="n">1 組</span></h2>
+    <p class="sub">不是你裝的，是 teamai 套件自帶、隨 <code style="font-family:var(--mono);font-size:.85em">teamai pull</code> 部署到本機的。團隊 repo 的 skills 目錄其實是空的。</p>
+    <div class="grid"></div>
+  </section>
+
+  <footer>
+    <p>盤點時間 2026-09-09。專案目錄底下沒有 <code style="font-family:var(--mono)">.claude/skills</code>，所以沒有專案層 skill。此表不含 plugin 提供的 skill（pdf-viewer、product-management、small-business、anthropic-skills、cowork-plugin-management）與 Claude Code 內建指令。</p>
+    <p>提醒：內建的 <code style="font-family:var(--mono)">xlsx</code> 不適用於工作追蹤活頁簿，那份檔案的 26 條下拉選單是 x14 格式，openpyxl 存不回去，要走 <code style="font-family:var(--mono)">/work-tracker-fill</code>。</p>
+  </footer>
+</div>
+
+<button class="theme" id="theme" type="button">切換深淺色</button>
+
+<script>
+const DATA = [
+ ["proj","work-tracker-fill",0,"維護工作追蹤活頁簿：寫入工作項目、完成版本升版、版面精簡。","全程保護既有公式、資料驗證與版面，寫入後以檔案時間戳驗證。"],
+ ["proj","ssdc-evidence-audit",0,"SSDC 系統的第二階段原始碼實證研究，全程唯讀。","固定 D-4 Linkage → D-5 State → D-3 Change → D-2 Responsibility → D-1 Identity → D-6 Evidence 順序。"],
+ ["proj","meeting-minutes",0,"逐字稿整理成決議、爭議、資訊、待辦四類會議紀錄。","同一份 JSON 輸出 Word、HTML 與 Markdown。單純逐字轉錄不適用。"],
+ ["proj","system-status-check",0,"查 GitHub repo 狀態與健康檢查端點，兩邊比對後產出報告。","會指出追蹤表裡過時的「已知風險」。寫回活頁簿的動作交給 work-tracker-fill。"],
+ ["proj","repo-assessment-report",0,"調查一個 repo 與它的線上端點，產出帶截圖的 PDF 評估報告。","明確區分「實際觀察」與「推測」。不做改程式碼或效能調校。"],
+ ["proj","claim-audit",0,"稽核文章或逐字稿的論述品質，回查每個具名來源的原文。","輸出段落／問題／原因／修改建議的表格與優先順序。"],
+ ["proj","transcript-to-article",0,"把演講或訪談逐字稿重組成可發布的繁體中文文章。","會修語音辨識錯字並標註無法確認的內容。會議紀錄請用 meeting-minutes。"],
+ ["proj","markdown-conventions",0,"繁體中文 Markdown 的排版與結構規範。","標題層級、表格與清單取捨、中英混排空格。多半由其他 skill 取用，少單獨叫。"],
+
+ ["plan","grilling",0,"針對一個計畫、決定或想法連續逼問，把思路壓到站得住為止。","說「grill me」之類的觸發詞就會自動啟動。"],
+ ["plan","grill-me",1,"同樣是逼問，但這個入口只能手動叫。","和 grilling 功能重疊，差別只在觸發方式。"],
+ ["plan","grill-with-docs",1,"逼問的同時把 ADR 與詞彙表一起寫出來。","適合會影響後續架構、需要留下決策紀錄的討論。"],
+ ["plan","wayfinder",1,"把一個 session 裝不下的大工程，拆成 issue tracker 上的決策票逐一解決。","適用於方向還不明、需要邊做邊收斂的長期工作。"],
+ ["plan","to-spec",1,"把當前對話直接寫成規格並發到 issue tracker。","不再訪談，純粹是把已經討論過的東西整理出來。"],
+ ["plan","to-tickets",1,"把計畫或對話拆成一組追蹤票，每張票標明它擋住誰。","本地會寫成一票一檔，接真的 tracker 則建立原生阻塞關聯。"],
+ ["plan","to-questionnaire",1,"把你答不了的決策轉成問卷，交給知道的人填。","適合卡在需要外部資訊的決策點。"],
+ ["plan","prototype",0,"做一個拋棄式原型，回答某個設計問題。","用來確認狀態模型合不合理，或看看介面長什麼樣。"],
+
+ ["build","implement",1,"依照規格或一組票開始實作。","通常接在 to-spec 或 to-tickets 之後。"],
+ ["build","tdd",0,"測試先行的開發：紅、綠、重構。","說要 test-first 或提到紅綠重構就會自動啟動。"],
+ ["build","scaffold-exercises",0,"建立練習題的目錄結構，含章節、題目、解答與講解。","產出直接通過 lint。"],
+ ["build","migrate-to-shoehorn",0,"把測試檔裡的 as 型別斷言換成 shoehorn。","針對 TypeScript 測試的部分資料建構。"],
+
+ ["diag","diagnosing-bugs",0,"難纏 bug 與效能回歸的診斷迴圈。","說「診斷」「debug 這個」或回報壞掉、噴錯、變慢就會啟動。"],
+ ["diag","code-review",0,"從標準與規格兩軸審查某個基準點之後的變更。","兩個子代理並行跑，結果並排呈現。"],
+ ["diag","triage",1,"讓 issue 與外部 PR 走一套分流狀態機，最後產出可交辦的簡報。","會分類、驗證，必要時逼問。"],
+ ["diag","resolving-merge-conflicts",0,"處理進行中的 merge 或 rebase 衝突。","偵測到衝突狀態就會啟動。"],
+
+ ["arch","codebase-design",0,"設計深模組時的共用語彙。","找可深化的地方、決定接縫位置、讓程式更好測試與導航。"],
+ ["arch","improve-codebase-architecture",1,"掃描整個 codebase 找可深化處，出成視覺化 HTML 報告，再針對你挑的那個逼問。","比 codebase-design 重，是主動掃描而非被動諮詢。"],
+ ["arch","domain-modeling",0,"建立並打磨專案的領域模型。","討論詞彙、寫 CONTEXT.md、記錄 ADR 時使用。"],
+ ["arch","writing-for-agents",0,"寫給 agent 讀的文件。","建立或修改 skill、改 AGENTS.md 或 CLAUDE.md 時使用。"],
+ ["arch","research",0,"對高可信一手來源查證，並把結果落成 repo 裡的 Markdown。","適合把讀文件、查 API 這類前置作業交出去。"],
+ ["arch","teach",1,"在這個工作區裡教你一個新技能或概念。","會產生學習紀錄與詞彙表。"],
+
+ ["env","setup-pre-commit",0,"在目前的 repo 裝 Husky 前置提交鉤子。","含 lint-staged 格式化、型別檢查與測試。"],
+ ["env","git-guardrails-claude-code",0,"設 hook 擋掉危險的 git 指令。","push、reset --hard、clean、branch -D 等在執行前就被擋下。"],
+ ["env","wizard",0,"產生互動式 bash 精靈，帶人走只有人能做的步驟。","開權限、設 CI secret、走第三方後台、一次性搬遷。"],
+ ["env","karpathy-guidelines",0,"減少常見 LLM 編碼錯誤的行為準則。","避免過度複雜化、只做必要修改、把假設講出來。"],
+ ["env","setup-matt-pocock-skills",1,"一次性前置設定：issue tracker、分流標籤詞彙、領域文件配置。","第一次用其他工程 skill 之前跑一次就好。"],
+ ["env","ask-matt",1,"問哪個 skill 適合你現在的情況。","這一整套工程 skill 的路由器，不確定用哪個時先問它。"],
+ ["env","handoff",1,"把當前對話壓縮成交接文件，讓另一個 session 接手。","context 快滿、或要換人接手時最實用。"],
+ ["env","wait-what",1,"上一則訊息沒說清楚，要求重講一次。","短、直接，卡住的時候比重新解釋快。"],
+
+ ["ext","team-wiki-codebase",0,"把多倉庫、多微服務的大型代碼庫壓成結構化知識庫。","teamai 套件自帶，简体中文。適用 10 個以上倉庫、AI 直接讀讀不動的專案。"]
+];
+
+const SECMAP = {};
+document.querySelectorAll("section[data-sec]").forEach(s => SECMAP[s.dataset.sec] = s.querySelector(".grid"));
+
+for (const [sec, name, manual, desc, when] of DATA) {
+  const card = document.createElement("article");
+  card.className = "card";
+  card.dataset.k = (name + " " + desc + " " + when).toLowerCase();
+  card.dataset.sec = sec;
+  card.dataset.manual = manual ? "1" : "0";
+  card.dataset.cmd = "/" + name;
+
+  const top = document.createElement("div");
+  top.className = "card-top";
+  const cmd = document.createElement("span");
+  cmd.className = "cmd";
+  cmd.innerHTML = '<span class="s">/</span>';
+  cmd.append(name);
+  const tag = document.createElement("span");
+  if (sec === "ext") { tag.className = "tag ext"; tag.textContent = "teamai"; }
+  else if (manual) { tag.className = "tag manual"; tag.textContent = "手動"; }
+  else { tag.className = "tag auto"; tag.textContent = "自動"; }
+  top.append(cmd, tag);
+
+  const rule = document.createElement("div");
+  rule.className = "rule";
+
+  const d = document.createElement("p");
+  d.className = "desc";
+  d.textContent = desc;
+
+  const w = document.createElement("p");
+  w.className = "when";
+  w.textContent = when;
+
+  const foot = document.createElement("div");
+  foot.className = "card-foot";
+  const meta = document.createElement("span");
+  meta.className = "meta";
+  meta.textContent = manual ? "必須手動輸入" : "情境符合會自動啟動";
+  const btn = document.createElement("button");
+  btn.className = "copy";
+  btn.type = "button";
+  btn.textContent = "複製";
+  foot.append(meta, btn);
+
+  card.append(top, rule, d, w, foot);
+  SECMAP[sec].append(card);
+}
+
+const cards = [...document.querySelectorAll(".card")];
+const q = document.getElementById("q");
+const shown = document.getElementById("shown");
+const empty = document.getElementById("empty");
+let filter = "all";
+
+function apply() {
+  const term = q.value.trim().toLowerCase().replace(/^\//, "");
+  let n = 0;
+  for (const c of cards) {
+    const okF = filter === "all"
+      || (filter === "manual" ? c.dataset.manual === "1" : c.dataset.sec === filter);
+    const okQ = !term || c.dataset.k.includes(term);
+    const vis = okF && okQ;
+    c.hidden = !vis;
+    if (vis) n++;
+  }
+  for (const s of document.querySelectorAll("section[data-sec]")) {
+    s.hidden = !s.querySelector(".card:not([hidden])");
+  }
+  shown.textContent = n;
+  empty.hidden = n !== 0;
+}
+
+q.addEventListener("input", apply);
+
+document.getElementById("chips").addEventListener("click", e => {
+  const b = e.target.closest(".chip");
+  if (!b) return;
+  filter = b.dataset.f;
+  for (const c of document.querySelectorAll(".chip")) {
+    c.setAttribute("aria-pressed", String(c === b));
+  }
+  apply();
+});
+
+async function copyCmd(card, btn) {
+  const text = card.dataset.cmd;
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.append(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch {}
+    ta.remove();
+  }
+  btn.textContent = "已複製";
+  btn.classList.add("done");
+  setTimeout(() => { btn.textContent = "複製"; btn.classList.remove("done"); }, 1400);
+}
+
+document.addEventListener("click", e => {
+  const card = e.target.closest(".card");
+  if (!card) return;
+  copyCmd(card, card.querySelector(".copy"));
+});
+
+document.addEventListener("keydown", e => {
+  if (e.key === "/" && document.activeElement !== q) {
+    e.preventDefault();
+    q.focus();
+    q.select();
+  } else if (e.key === "Escape") {
+    if (q.value) { q.value = ""; apply(); }
+    q.blur();
+  }
+});
+
+const themeBtn = document.getElementById("theme");
+themeBtn.addEventListener("click", () => {
+  const cur = document.documentElement.getAttribute("data-theme");
+  const isDark = cur ? cur === "dark"
+    : matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.setAttribute("data-theme", isDark ? "light" : "dark");
+});
+
+apply();
+</script>
