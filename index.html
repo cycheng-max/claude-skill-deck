@@ -222,13 +222,13 @@ footer p{margin:0 0 10px;max-width:var(--measure-wide)}
 </style>
 
 <div class="wrap">
-  <p class="kicker">Skill Deck · 本機 39 組 · 2026-09-09 盤點</p>
+  <p class="kicker">Skill Deck · 本機 40 組 · 2026-09-10 盤點</p>
   <h1><span class="s">/</span>Skill 盤點台</h1>
 
-  <p class="lede">這台機器 <code style="font-family:var(--mono);font-size:.85em">~/.claude/skills</code> 底下裝了 39 個 skill。其中 <strong>14 個模型叫不動，只能你自己打指令</strong>，那是這張表存在的理由。點「複製」拿到指令，貼進對話框就會啟動。</p>
+  <p class="lede">這台機器 <code style="font-family:var(--mono);font-size:.85em">~/.claude/skills</code> 底下裝了 40 個 skill。其中 <strong>14 個模型叫不動，只能你自己打指令</strong>，那是這張表存在的理由。點「複製」拿到指令，貼進對話框就會啟動。</p>
 
   <div class="note">
-    <b>手動與自動的差別。</b>帶 <code>手動</code> 標記的 14 個在設定裡寫了 <code>disable-model-invocation: true</code>，模型不會依情境自動觸發，必須打指令。這是刻意的——它們會改 issue tracker、產生大量檔案或重設專案設定。剩下 25 個會在情境符合時自動啟動，你也可以手動叫。
+    <b>手動與自動的差別。</b>帶 <code>手動</code> 標記的 14 個在設定裡寫了 <code>disable-model-invocation: true</code>，模型不會依情境自動觸發，必須打指令。這是刻意的——它們會改 issue tracker、產生大量檔案或重設專案設定。剩下 26 個會在情境符合時自動啟動，你也可以手動叫。
   </div>
   <div class="note info">
     <b>資料來源。</b>指令名稱與分類來自 2026-09-09 對 <code>~/.claude/skills</code> 的實際掃描，說明取自各 skill 的 <code>SKILL.md</code> frontmatter，經改寫成一句話。分類是我依用途歸的，不是原作者的分法。
@@ -238,7 +238,7 @@ footer p{margin:0 0 10px;max-width:var(--measure-wide)}
     <div class="searchbar">
       <span class="slash">/</span>
       <input id="q" type="text" placeholder="輸入指令或關鍵字，例如：逐字稿、活頁簿、review" autocomplete="off" spellcheck="false">
-      <span class="count"><span id="shown">39</span> / 39</span>
+      <span class="count"><span id="shown">40</span> / 40</span>
     </div>
     <p class="hints">
       <span>按 <kbd>/</kbd> 跳到搜尋框</span>
@@ -261,7 +261,7 @@ footer p{margin:0 0 10px;max-width:var(--measure-wide)}
   <p class="empty" hidden id="empty">沒有符合的指令。按 Esc 清除搜尋。</p>
 
   <section data-sec="proj">
-    <h2>專案專用 <span class="n">8 組</span></h2>
+    <h2>專案專用 <span class="n">9 組</span></h2>
     <p class="sub">為這裡的實際業務寫的，也是唯一會動到客戶資料與活頁簿的一群。全部會自動觸發。</p>
     <div class="grid"></div>
   </section>
@@ -303,7 +303,7 @@ footer p{margin:0 0 10px;max-width:var(--measure-wide)}
   </section>
 
   <footer>
-    <p>盤點時間 2026-09-09。專案目錄底下沒有 <code style="font-family:var(--mono)">.claude/skills</code>，所以沒有專案層 skill。此表不含 plugin 提供的 skill（pdf-viewer、product-management、small-business、anthropic-skills、cowork-plugin-management）與 Claude Code 內建指令。</p>
+    <p>盤點時間 2026-09-10。專案目錄底下沒有 <code style="font-family:var(--mono)">.claude/skills</code>，所以沒有專案層 skill。此表不含 plugin 提供的 skill（pdf-viewer、product-management、small-business、anthropic-skills、cowork-plugin-management）與 Claude Code 內建指令。</p>
     <p>提醒：內建的 <code style="font-family:var(--mono)">xlsx</code> 不適用於工作追蹤活頁簿，那份檔案的 26 條下拉選單是 x14 格式，openpyxl 存不回去，要走 <code style="font-family:var(--mono)">/work-tracker-fill</code>。</p>
   </footer>
 </div>
@@ -320,6 +320,7 @@ const DATA = [
  ["proj","claim-audit",0,"稽核文章或逐字稿的論述品質，回查每個具名來源的原文。","輸出段落／問題／原因／修改建議的表格與優先順序。"],
  ["proj","transcript-to-article",0,"把演講或訪談逐字稿重組成可發布的繁體中文文章。","會修語音辨識錯字並標註無法確認的內容。會議紀錄請用 meeting-minutes。"],
  ["proj","markdown-conventions",0,"繁體中文 Markdown 的排版與結構規範。","標題層級、表格與清單取捨、中英混排空格。多半由其他 skill 取用，少單獨叫。"],
+ ["proj","multi-session-opord",0,"當總參謀長：把會議待辦拆成多個 session 的分工作戰令，附給決策者的拍板單。","唯讀蒐證、反證、核實循環、分層授權派工；拍板前不改程式也不派單。說「你是總參謀長」或「幫我規劃分工」就會啟動。"],
 
  ["plan","grilling",0,"針對一個計畫、決定或想法連續逼問，把思路壓到站得住為止。","說「grill me」之類的觸發詞就會自動啟動。"],
  ["plan","grill-me",1,"同樣是逼問，但這個入口只能手動叫。","和 grilling 功能重疊，差別只在觸發方式。"],
