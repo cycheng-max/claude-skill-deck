@@ -1,6 +1,6 @@
 # Claude Skill 盤點台
 
-這台機器 `~/.claude/skills` 底下 40 個 Claude Code skill 的指令小抄。其中 **14 個必須手動輸入指令才會啟動**，其餘 26 個會在情境符合時自動觸發。
+這台機器 `~/.claude/skills` 底下 42 個 Claude Code skill 的指令小抄。其中 **16 個必須手動輸入指令才會啟動**，其餘 26 個會在情境符合時自動觸發。
 
 線上版：<https://rita112025-cpu.github.io/claude-skill-deck/>，可搜尋、可篩選，點一下就能複製指令。
 
@@ -15,6 +15,8 @@
 | 自製 | 9 | 本 repo 未附授權聲明 |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | 29 | MIT |
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | 1 | 原 repo 未標示 |
+| [ayghri/i-have-adhd](https://github.com/ayghri/i-have-adhd) | 1 | MIT |
+| i-have-adhd 繁中譯本 | 1 | 檔案標示 MIT；取得來源未記錄 |
 | teamai 套件 | 1 | 隨 `teamai pull` 部署 |
 
 本 repo 只收錄自製 skill `multi-session-opord` 的原始檔（`skills/` 目錄）。其他 skill 請到各自的來源 repo 取得。來源是 2026-09-11 比對各來源 repo 的 skill 名稱後判定的。
@@ -79,9 +81,9 @@
 | `/research` | 自動 | 對高可信一手來源查證，並把結果寫成 repo 裡的 Markdown |
 | `/teach` | 手動 | 在這個工作區裡教一個新技能或概念 |
 
-### 環境與流程（8 個）
+### 環境與流程（10 個）
 
-`/karpathy-guidelines` 出自 andrej-karpathy-skills，其餘 7 個出自 mattpocock/skills。
+`/karpathy-guidelines` 出自 andrej-karpathy-skills，`/i-have-adhd` 出自 ayghri/i-have-adhd，`/i-have-adhd-zh-tw` 是它的繁中譯本，其餘 7 個出自 mattpocock/skills。
 
 | 指令 | 觸發 | 用途 |
 |---|---|---|
@@ -93,6 +95,8 @@
 | `/ask-matt` | 手動 | 問哪個 skill 適合現在的情況 |
 | `/handoff` | 手動 | 把當前對話壓縮成交接文件，讓另一個 session 接手 |
 | `/wait-what` | 手動 | 上一則訊息沒說清楚，要求重講一次 |
+| `/i-have-adhd-zh-tw` | 手動 | 把回覆改成 ADHD 友善的形狀：先給下一步、多步驟編號、每輪重述進度 |
+| `/i-have-adhd` | 手動 | 同一套 ADHD 友善回覆規則的英文原版 |
 
 ### 外來部署（1 個，teamai 套件）
 
@@ -102,7 +106,7 @@
 
 ## 資料來源與維護
 
-- **名稱與分類**：來自 2026-09-09 對 `~/.claude/skills` 的實際掃描，2026-09-10 補入 `multi-session-opord`。分類依用途歸納，不是原作者的分法。
+- **名稱與分類**：來自 2026-09-09 對 `~/.claude/skills` 的實際掃描，2026-09-10 補入 `multi-session-opord`，2026-09-11 補入 `i-have-adhd` 與 `i-have-adhd-zh-tw`。分類依用途歸納，不是原作者的分法。
 - **用途說明**：取自各 skill 的 `SKILL.md`，改寫成一句話。
 - **不列入的項目**：`multi-session-opord-workspace` 是工作資料夾，裡面沒有 `SKILL.md`，不是 skill。外掛提供的 skill 與 Claude Code 內建指令也不在此表。
 - **更新方式**：README 依線上版 `index.html` 裡的 `DATA` 陣列整理。新增或修改 skill 時，兩邊要一起更新。

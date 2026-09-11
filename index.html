@@ -222,23 +222,23 @@ footer p{margin:0 0 10px;max-width:var(--measure-wide)}
 </style>
 
 <div class="wrap">
-  <p class="kicker">Skill Deck · 本機 40 組 · 2026-09-10 盤點</p>
+  <p class="kicker">Skill Deck · 本機 42 組 · 2026-09-11 盤點</p>
   <h1><span class="s">/</span>Skill 盤點台</h1>
 
-  <p class="lede">這台機器 <code style="font-family:var(--mono);font-size:.85em">~/.claude/skills</code> 底下裝了 40 個 skill。其中 <strong>14 個模型叫不動，只能你自己打指令</strong>，那是這張表存在的理由。點「複製」拿到指令，貼進對話框就會啟動。</p>
+  <p class="lede">這台機器 <code style="font-family:var(--mono);font-size:.85em">~/.claude/skills</code> 底下裝了 42 個 skill。其中 <strong>16 個模型叫不動，只能你自己打指令</strong>，那是這張表存在的理由。點「複製」拿到指令，貼進對話框就會啟動。</p>
 
   <div class="note">
-    <b>手動與自動的差別。</b>帶 <code>手動</code> 標記的 14 個在設定裡寫了 <code>disable-model-invocation: true</code>，模型不會依情境自動觸發，必須打指令。這是刻意的——它們會改 issue tracker、產生大量檔案或重設專案設定。剩下 26 個會在情境符合時自動啟動，你也可以手動叫。
+    <b>手動與自動的差別。</b>帶 <code>手動</code> 標記的 16 個在設定裡寫了 <code>disable-model-invocation: true</code>，模型不會依情境自動觸發，必須打指令。這是刻意的——它們會改 issue tracker、產生大量檔案或重設專案設定。剩下 26 個會在情境符合時自動啟動，你也可以手動叫。
   </div>
   <div class="note info">
-    <b>資料來源。</b>指令名稱與分類來自 2026-09-09 對 <code>~/.claude/skills</code> 的實際掃描（2026-09-10 補入 multi-session-opord 一組），說明取自各 skill 的 <code>SKILL.md</code> frontmatter，經改寫成一句話。分類是我依用途歸的，不是原作者的分法。
+    <b>資料來源。</b>指令名稱與分類來自 2026-09-09 對 <code>~/.claude/skills</code> 的實際掃描（2026-09-10 補入 multi-session-opord 一組，2026-09-11 補入 i-have-adhd 與 i-have-adhd-zh-tw 兩組），說明取自各 skill 的 <code>SKILL.md</code> frontmatter，經改寫成一句話。分類是我依用途歸的，不是原作者的分法。
   </div>
 
   <div class="controls">
     <div class="searchbar">
       <span class="slash">/</span>
       <input id="q" type="text" placeholder="輸入指令或關鍵字，例如：逐字稿、活頁簿、review" autocomplete="off" spellcheck="false">
-      <span class="count"><span id="shown">40</span> / 40</span>
+      <span class="count"><span id="shown">42</span> / 42</span>
     </div>
     <p class="hints">
       <span>按 <kbd>/</kbd> 跳到搜尋框</span>
@@ -291,7 +291,7 @@ footer p{margin:0 0 10px;max-width:var(--measure-wide)}
   </section>
 
   <section data-sec="env">
-    <h2>環境與流程 <span class="n">8 組</span></h2>
+    <h2>環境與流程 <span class="n">10 組</span></h2>
     <p class="sub">設定專案、管住危險操作，以及對話本身的流程控制。</p>
     <div class="grid"></div>
   </section>
@@ -303,7 +303,7 @@ footer p{margin:0 0 10px;max-width:var(--measure-wide)}
   </section>
 
   <footer>
-    <p>盤點時間 2026-09-10。專案目錄底下沒有 <code style="font-family:var(--mono)">.claude/skills</code>，所以沒有專案層 skill。此表不含 plugin 提供的 skill（pdf-viewer、product-management、small-business、anthropic-skills、cowork-plugin-management）與 Claude Code 內建指令。</p>
+    <p>盤點時間 2026-09-11。專案目錄底下沒有 <code style="font-family:var(--mono)">.claude/skills</code>，所以沒有專案層 skill。此表不含 plugin 提供的 skill（pdf-viewer、product-management、small-business、anthropic-skills、cowork-plugin-management）與 Claude Code 內建指令。</p>
     <p>提醒：內建的 <code style="font-family:var(--mono)">xlsx</code> 不適用於工作追蹤活頁簿，那份檔案的 26 條下拉選單是 x14 格式，openpyxl 存不回去，要走 <code style="font-family:var(--mono)">/work-tracker-fill</code>。</p>
   </footer>
 </div>
@@ -356,6 +356,8 @@ const DATA = [
  ["env","ask-matt",1,"問哪個 skill 適合你現在的情況。","這一整套工程 skill 的路由器，不確定用哪個時先問它。"],
  ["env","handoff",1,"把當前對話壓縮成交接文件，讓另一個 session 接手。","context 快滿、或要換人接手時最實用。"],
  ["env","wait-what",1,"上一則訊息沒說清楚，要求重講一次。","短、直接，卡住的時候比重新解釋快。"],
+ ["env","i-have-adhd-zh-tw",1,"把回覆改成 ADHD 友善的形狀：先給下一步、多步驟編號、每輪重述進度。","啟用後持續生效，說「stop adhd mode」或「一般模式」才關閉。繁中版。"],
+ ["env","i-have-adhd",1,"同一套 ADHD 友善回覆規則的英文原版。","出自 ayghri/i-have-adhd；說「stop adhd mode」關閉。和繁中版擇一使用即可。"],
 
  ["ext","team-wiki-codebase",0,"把多倉庫、多微服務的大型代碼庫壓成結構化知識庫。","teamai 套件自帶，简体中文。適用 10 個以上倉庫、AI 直接讀讀不動的專案。"]
 ];
